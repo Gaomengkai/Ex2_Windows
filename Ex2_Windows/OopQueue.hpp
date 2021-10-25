@@ -45,6 +45,11 @@ QUEUE::QUEUE(const QUEUE& q) : elems(new int[q.max]), max(q.max)
     }
 }
 
+/// <summary>
+/// сцqрф╤╞ЁУй╪╩╞╤сап
+/// </summary>
+/// <param name="q"></param>
+/// <returns>╤тоС</returns>
 QUEUE::QUEUE(QUEUE&& q) noexcept :elems(q.elems), max(q.max)        //сцqрф╤╞ЁУй╪╩╞╤сап
 {
     this->head = q.head; this->tail = q.tail;
@@ -58,17 +63,33 @@ QUEUE::QUEUE(QUEUE&& q) noexcept :elems(q.elems), max(q.max)        //сцqрф╤╞ЁУй
     *(int*)&(q.max) = 0;
 }
 
-QUEUE::operator int() const noexcept         //╥╣╩ь╤сап╣дй╣╪йт╙кь╦ЖйЩ
+
+/// <summary>
+/// ╥╣╩ь╤сап╣дй╣╪йт╙кь╦ЖйЩ
+/// </summary>
+/// <returns>╤сап╣дй╣╪йт╙кь╦ЖйЩ</returns>
+QUEUE::operator int() const noexcept
 {
     return max == 0 ? 0 : (tail + max - head) % max;
 }
 
-int QUEUE::size() const noexcept            //╥╣╩ь╤сапиЙгК╣двН╢Ст╙кь╦ЖйЩmax
+
+/// <summary>
+/// ╥╣╩ь╤сапиЙгК╣двН╢Ст╙кь╦ЖйЩmax
+/// </summary>
+/// <returns></returns>
+int QUEUE::size() const noexcept
 {
     return this->max;
 }
 
-QUEUE& QUEUE::operator<<(int e)               //╫╚eхК╤сапн╡╡©ё╛╡╒╥╣╩ь╣╠г╟╤сап
+
+/// <summary>
+/// ╫╚eхК╤сапн╡╡©ё╛╡╒╥╣╩ь╣╠г╟╤сап
+/// </summary>
+/// <param name="e">╢Щ╡ывВт╙кь</param>
+/// <returns>╣╠г╟╤сап</returns>
+QUEUE& QUEUE::operator<<(int e)
 {
     if ((tail + 1) % max == head) {
         throw "QUEUE is full!";
@@ -79,7 +100,13 @@ QUEUE& QUEUE::operator<<(int e)               //╫╚eхК╤сапн╡╡©ё╛╡╒╥╣╩ь╣╠г╟╤сап
     return *this;
 }
 
-QUEUE& QUEUE::operator>>(int& e)              //╢с╤сйвЁЖт╙кь╣╫eё╛╡╒╥╣╩ь╣╠г╟╤сап
+
+/// <summary>
+/// ╢с╤сйвЁЖт╙кь╣╫e
+/// </summary>
+/// <param name="e">т╙кь</param>
+/// <returns>╣╠г╟╤сап</returns>
+QUEUE& QUEUE::operator>>(int& e)
 {
     if (this->tail == this->head) {
         throw "QUEUE is empty!";
@@ -90,7 +117,13 @@ QUEUE& QUEUE::operator>>(int& e)              //╢с╤сйвЁЖт╙кь╣╫eё╛╡╒╥╣╩ь╣╠г╟╤сап
     return *this;
 }
 
-QUEUE& QUEUE::operator=(const QUEUE& q)            //иН©╫╠╢╦Ёж╣╡╒╥╣╩ь╠╩╦Ёж╣╤сап
+
+/// <summary>
+/// иН©╫╠╢╦Ёж╣╡╒╥╣╩ь╠╩╦Ёж╣╤сап
+/// </summary>
+/// <param name="q">╦Ёж╣</param>
+/// <returns>╠╩╦Ёж╣╤сап</returns>
+QUEUE& QUEUE::operator=(const QUEUE& q)
 {
     if (this->elems == q.elems) return *this;
     if (this->elems != NULL) {
@@ -105,7 +138,13 @@ QUEUE& QUEUE::operator=(const QUEUE& q)            //иН©╫╠╢╦Ёж╣╡╒╥╣╩ь╠╩╦Ёж╣╤сап
     return *this;
 }
 
-QUEUE& QUEUE::operator=(QUEUE&& q) noexcept           //рф╤╞╦Ёж╣╡╒╥╣╩ь╠╩╦Ёж╣╤сап
+
+/// <summary>
+/// рф╤╞╦Ёж╣╡╒╥╣╩ь╠╩╦Ёж╣╤сап
+/// </summary>
+/// <param name="q">╦Ёж╣</param>
+/// <returns>╤сап</returns>
+QUEUE& QUEUE::operator=(QUEUE&& q) noexcept
 {
     if (this->elems == q.elems) return *this;
     if (this->elems != nullptr) {
@@ -123,7 +162,13 @@ QUEUE& QUEUE::operator=(QUEUE&& q) noexcept           //рф╤╞╦Ёж╣╡╒╥╣╩ь╠╩╦Ёж╣╤сап
     return *this;
 }
 
-char* QUEUE::print(char* s) const noexcept           //╢Рс║╤сапжаs╡╒╥╣╩ьs
+
+/// <summary>
+/// ╢Рс║жаs
+/// </summary>
+/// <param name="s">╢Щ╢Рс║╣даый╠вж╥Ш╢╝</param>
+/// <returns>╢Рс║╣даый╠вж╥Ш╢╝</returns>
+char* QUEUE::print(char* s) const noexcept
 {
     char a[10];
     int i; s[0] = 0;
@@ -135,7 +180,11 @@ char* QUEUE::print(char* s) const noexcept           //╢Рс║╤сапжаs╡╒╥╣╩ьs
     return s;
 }
 
-QUEUE::~QUEUE()                        //оЗ╩ы╣╠г╟╤сап
+
+/// <summary>
+/// нЖ╧╧
+/// </summary>
+QUEUE::~QUEUE()
 {
     if (this->elems != NULL)
     {
