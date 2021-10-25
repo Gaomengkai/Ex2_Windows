@@ -3,4 +3,4 @@
 
 欢迎大家访问我的[GitHub主页](https://gaomengkai.github.io/)
 
-For lyz
+As a recognition of [lyz](https://github.com/lao-ye-zi 'his GitHub')
